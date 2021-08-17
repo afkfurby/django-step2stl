@@ -1,5 +1,6 @@
 import subprocess, os
 from django_step2stl import settings
+import trimesh
 
 # converts stp files to stl
 
@@ -20,3 +21,14 @@ def step2stl(filein, fileout=""):
     output = proc.stdout.decode(encoding='utf-8', errors='ignore')
 
     return fileout
+
+def threeMF2stl(filein):
+    fileout = filein.replace(".3mf", "").replace(".3MF", "") + ".stl"
+
+    mesh = trimesh.load(filein)
+    mesh2 = mesh.copy()
+    # mesh2.apply_scale(1.1)
+    mesh2.export(fileout)
+
+    return fileout
+

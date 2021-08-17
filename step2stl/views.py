@@ -33,7 +33,7 @@ def convert(request):
         my_file = request.FILES.get('file')
 
         # check if file is allowed:
-        if my_file.name.split('.')[-1].lower() in ['stp', 'step']: # TODO: these should be convertable ['obj', 'amf', 'stp', 'step', '3mf']
+        if my_file.name.split('.')[-1].lower() in ['stp', 'step', '3mf']: # TODO: these should be convertable ['obj', 'amf', 'stp', 'step', '3mf']
 
             # check file for shell if readable
             try:
@@ -52,8 +52,11 @@ def convert(request):
                 filename = fs.save(fs.get_valid_name(my_file.name), my_file)
 
                 uploaded_file_url = fs.url(filename)
+                if my_file.name.split('.')[-1].lower() in ['stp', 'step']:
+                    converted_file_path = converters.step2stl(fs.path(filename))
+                elif my_file.name.split('.')[-1].lower() in ['3mf']:
+                    converted_file_path = converters.threeMF2stl(fs.path(filename))
 
-                converted_file_path = converters.step2stl(fs.path(filename))
                 converted_file_url = fs.url(converted_file_path)
 
                 return HttpResponse(uploaded_file_url)

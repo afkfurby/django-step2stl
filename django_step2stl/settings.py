@@ -138,4 +138,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if os.environ.get('DJANGO_PRODUCTION', '') != 'True':
     FREECAD_PATH = '/usr/bin/freecad'
 else:
-    FREECAD_PATH = 'C:\\Program Files\\FreeCAD 0.18\\bin'
+    FREECAD_PATH = 'C:\\Program Files\\FreeCAD 0.18\\bin\\FreeCADCmd.exe'

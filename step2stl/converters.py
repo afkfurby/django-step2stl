@@ -16,7 +16,7 @@ def step2stl(filein, fileout=""):
             new_line1 = line.replace('file_path', filein).replace('file_out', fileout)
             Script.write(new_line1)
 
-    proc = subprocess.run([os.path.join(settings.BASE_DIR, 'step2stl/freecad/win/018/bin/FreeCADCmd.exe'), os.path.join(settings.BASE_DIR, 'step2stl/tmp/freecad_step2stl.py')], stdout=subprocess.PIPE)
+    proc = subprocess.run([os.path.join(settings.BASE_DIR, settings.FREECAD_PATH ,'FreeCADCmd.exe'), os.path.join(settings.BASE_DIR, 'step2stl/tmp/freecad_step2stl.py')], stdout=subprocess.PIPE)
 
     output = proc.stdout.decode(encoding='utf-8', errors='ignore')
 

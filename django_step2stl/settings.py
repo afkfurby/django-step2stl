@@ -133,3 +133,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+if os.environ.get('DJANGO_PRODUCTION', '') != 'True':
+    FREECAD_PATH = '/usr/bin/freecad'
+else:
+    FREECAD_PATH = 'C:\\Program Files\\FreeCAD 0.18\\bin'
